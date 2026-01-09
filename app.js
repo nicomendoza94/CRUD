@@ -4,6 +4,10 @@ const express = require("express");
 //se inicializa el servidor
 const app = express();
 
+//middleware configurado antes de las rutas
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+
 //definir el puerto
 const PORT = 5555;
 
@@ -14,5 +18,5 @@ app.get("/", (req, res) => {
 
 //levantar el servidor
 app.listen(PORT, () => {
-    console.log("servidor escuchando en http://localhost:${PORT}");
+    console.log(`servidor escuchando en http://localhost:${PORT}`);
 });
