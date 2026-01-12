@@ -8,13 +8,14 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
+// importar rutas
+const topicsRoutes = require("./routes/topics.routes");
+
+// usar rutas
+app.use("/", topicsRoutes);
+
 //definir el puerto
 const PORT = 5555;
-
-//ruta de prueba
-app.get("/", (req, res) => {
-    res.send("servidor funcionando");
-});
 
 //levantar el servidor
 app.listen(PORT, () => {
