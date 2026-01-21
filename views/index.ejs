@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Temas</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<h1>Temas</h1>
+
+<form action="/topics" method="POST" class="form-crear">
+  <input type="text" name="title" required placeholder="Nuevo tema">
+  <button type="submit">Crear Tema</button>
+</form>
+
+<ul class="lista-temas">
+<% topics.forEach(t => { %>
+  <li class="tema" id="topic-<%= t.id %>">
+
+    <div>
+      <span id="title-<%=t.id%>"><%= t.title %></span>
+
+      <button class="edit" onclick="showEditTopic(<%=t.id%>)">Editar</button>
+
+      <span>
+        votos:
+        <span id="tv-<%=t.id%>"><%=t.votes%></span>
+      </span>
+
+      <button class="vote" onclick="voteTopic(<%=t.id%>)">+1</button>
+      <button class="delete" onclick="deleteTopic(<%=t.id%>)">Eliminar</button>
+    </div>
+
+    <div id="edit-topic-<%=t.id%>" class="inline-edit" style="display:none;">
+      <input type="text" id="input-topic-<%=t.id%>" value="<%=t.title%>">
+      <button class="edit" onclick="updateTopic(<%=t.id%>)">Guardar</button>
+    </div>
+
+    <form action="/links" method="POST">
+      <input type="hidden" name="topic_id" value="<%=t.id%>">
+      <input type="url" name="url" required placeholder="Nuevo enlace">
+      <button type="submit">Agregar Link</button>
+    </form>
+
+    <ul>
+    <% t.links.forEach(l => { %>
+      <li class="enlace" id="link-<%=l.id%>">
+
+        <a
+          id="url-<%=l.id%>"
+          href="<%= l.url %>"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <%= l.url %>
+        </a>
+
+        <span>
+          votos:
+          <span id="lv-<%=l.id%>"><%= l.votes %></span>
+        </span>
+
+        <div>
+          <button class="vote" onclick="voteLink(<%=l.id%>)">+1</button>
+          <button class="edit" onclick="showEditLink(<%=l.id%>)">Editar</button>
+          <button class="delete" onclick="deleteLink(<%=l.id%>)">X</button>
+        </div>
+
+        <div id="edit-link-<%=l.id%>" class="inline-edit" style="display:none;">
+          <input type="url" id="input-link-<%=l.id%>" value="<%= l.url %>">
+          <button class="edit" onclick="updateLink(<%=l.id%>)">Guardar</button>
+        </div>
+
+      </li>
+    <% }) %>
+    </ul>
+
+  </li>
+<% }) %>
+</ul>
+
+<script src="/main.js"></script>
+</body>
+</html>
