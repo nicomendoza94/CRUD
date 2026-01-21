@@ -7,7 +7,7 @@ const path = require("path");
 const app = express();
 
 //middleware configurado antes de las rutas
-app.use(express.json());
+app.use(express.json());     //Es la funcion que fabrica middlewares, es la funcion que se ejecuta en cada request
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static("public"));
 
