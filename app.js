@@ -1,6 +1,7 @@
 //importar express
 const express = require("express");
 
+//sirve para trabajar con rutas de archivos
 const path = require("path");
 
 //se inicializa el servidor
@@ -11,12 +12,13 @@ app.use(express.json());     //Es la funcion que fabrica middlewares, es la func
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static("public"));
 
-// configurar EJS
+//configurar EJS para luego renderizar las vistas
 app.set("view engine", "ejs");
 
+//aca de indican donde estan los archivos
 app.set("views", path.join(__dirname, "views"));
 
-// importar rutas
+//importar rutas
 app.use("/", require("./routes/home.routes"));
 app.use("/topics", require("./routes/topics.routes"));
 app.use("/links", require("./routes/links.routes"));

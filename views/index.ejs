@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>Temas</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css">  <%#se carga el estilo css aca%>
 </head>
 <body>
 
 <h1>Temas</h1>
-
+<%#form para crear un tema%>
 <form action="/topics" method="POST" class="form-crear">
   <input type="text" name="title" required placeholder="Nuevo tema">
   <button type="submit">Crear Tema</button>
 </form>
 
 <ul class="lista-temas">
-<% topics.forEach(t => { %>
-  <li class="tema" id="topic-<%= t.id %>">
+<% topics.forEach(t => { %>    <%#recorre los topics%>
+  <li class="tema" id="topic-<%= t.id %>">   <%#se imprime el valor del id aca%>
 
     <div>
-      <span id="title-<%=t.id%>"><%= t.title %></span>
+      <span id="title-<%=t.id%>"><%= t.title %></span>   <%#muestra el titulo del topic%>
 
       <button class="edit" onclick="showEditTopic(<%=t.id%>)">Editar</button>
 
@@ -32,7 +32,7 @@
       <button class="delete" onclick="deleteTopic(<%=t.id%>)">Eliminar</button>
     </div>
 
-    <div id="edit-topic-<%=t.id%>" class="inline-edit" style="display:none;">
+    <div id="edit-topic-<%=t.id%>" class="inline-edit" style="display:none;">   <%#el div empieza oculto porque tiene none%>
       <input type="text" id="input-topic-<%=t.id%>" value="<%=t.title%>">
       <button class="edit" onclick="updateTopic(<%=t.id%>)">Guardar</button>
     </div>

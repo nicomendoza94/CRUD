@@ -1,11 +1,13 @@
+//se ejecuta cuando se hace clic en boton en ejs
+//fetch es una func del navegador para enviar peticiones http al servidor
 function voteTopic(id) {
   fetch(`/topics/${id}/vote`, { method: "POST" })
-    .then(() => location.reload());
+    .then(() => location.reload());    //cuando el back responde, recarga la pag para ver el voto actualizado
 }
 
 function voteLink(id) {
   fetch(`/links/${id}/vote`, { method: "POST" })
-    .then(() => location.reload());
+    .then(() => location.reload());    //location representa la url actual del navegador
 }
 
 function deleteTopic(id) {
@@ -18,21 +20,21 @@ function deleteLink(id) {
     .then(() => location.reload());
 }
 
-function showEditTopic(id) {
-  document.getElementById(`edit-topic-${id}`).style.display = "block";
-}
-
+function showEditTopic(id) {      //se ejecuta en el navegador y no en el servidor
+  document.getElementById(`edit-topic-${id}`).style.display = "block";  //doc es un objeto que representa el html, para acceder al contenido de la pag
+}                         //Busca un elemento html tenga ese atributo y devuelve el div
+                          //con block se muestra ese elemento
 function updateTopic(id) {
-  const value = document.getElementById(`input-topic-${id}`).value;
+  const value = document.getElementById(`input-topic-${id}`).value;    //Se ejecuta cuando haces click en guardar
 
-  fetch(`/topics/${id}`, {
+  fetch(`/topics/${id}`, {     //hace una peticion http
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: value })
+    body: JSON.stringify({ title: value })    //se conviertes el objeto js en texto json
   }).then(() => location.reload());
 }
 
-function showEditLink(id) {
+function showEditLink(id) {    //para mostrar el input oculto
   document.getElementById(`edit-link-${id}`).style.display = "block";
 }
 

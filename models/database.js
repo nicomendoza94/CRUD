@@ -1,11 +1,11 @@
-// models/database.js
-const sqlite3 = require("sqlite3").verbose();
-const path = require("path");
+//se importa sqlite
+const sqlite3 = require("sqlite3").verbose();  //ayuda a ver mas info de los errores y depuracion si algo falla
+const path = require("path");    //sirve para trabajar con rutas de archivos
 
-const dbPath = path.join(__dirname, "..", "challenge.db");
-const db = new sqlite3.Database(dbPath);
+const dbPath = path.join(__dirname, "..", "challenge.db");   //carpeta donde esta el archivo models
+const db = new sqlite3.Database(dbPath);   //crea o abre el archivo challenge.db
 
-db.serialize(() => {
+db.serialize(() => {    //para que las consultas se ejecutan en orden
   db.run(`
     CREATE TABLE IF NOT EXISTS topics (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
